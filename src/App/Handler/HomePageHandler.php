@@ -9,11 +9,8 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Diactoros\Response\JsonResponse;
-use Zend\Expressive\Plates\PlatesRenderer;
 use Zend\Expressive\Router;
 use Zend\Expressive\Template;
-use Zend\Expressive\Twig\TwigRenderer;
-use Zend\Expressive\ZendView\ZendViewRenderer;
 
 class HomePageHandler implements RequestHandlerInterface
 {
@@ -67,10 +64,8 @@ class HomePageHandler implements RequestHandlerInterface
                 break;
         }
 
-        if ($this->router instanceof Router\AuraRouter) {
-            $data['routerName'] = 'Aura.Router';
-            $data['routerDocs'] = 'http://auraphp.com/packages/2.x/Router.html';
-        } elseif ($this->router instanceof Router\FastRouteRouter) {
+
+        if ($this->router instanceof Router\FastRouteRouter) {
             $data['routerName'] = 'FastRoute';
             $data['routerDocs'] = 'https://github.com/nikic/FastRoute';
         } elseif ($this->router instanceof Router\ZendRouter) {
